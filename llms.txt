@@ -1,0 +1,110 @@
+# PhysioDevices
+
+[![r-universe](https://x-biosignal.r-universe.dev/badges/PhysioDevices)](https://x-biosignal.r-universe.dev/PhysioDevices)
+[![License:
+MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://x-biosignal.github.io/PhysioDevices/LICENSE)
+
+`PhysioDevices` imports exports from supported wearable and laboratory
+systems into `PhysioExperiment` or `MultiRatePhysioExperiment` objects.
+Native sampling rates, device metadata, events, and import provenance
+are retained where the source format provides them.
+
+## Installation
+
+``` r
+
+options(repos = c(
+  xbiosignal = "https://x-biosignal.r-universe.dev",
+  CRAN = "https://cloud.r-project.org"
+))
+install.packages("PhysioDevices")
+```
+
+## Quick start
+
+The package includes a small Empatica E4 fixture:
+
+``` r
+
+library(PhysioDevices)
+
+session <- system.file("extdata", "e4_sample", package = "PhysioDevices")
+recording <- readEmpaticaE4(session)
+
+PhysioCore::streamNames(recording)
+```
+
+## Supported readers
+
+| Source | Reader | Result |
+|----|----|----|
+| Empatica E4 CSV session | [`readEmpaticaE4()`](https://x-biosignal.github.io/PhysioDevices/reference/readEmpaticaE4.md) | Multi-rate recording |
+| Empatica EmbracePlus Avro | [`readEmbracePlusAvro()`](https://x-biosignal.github.io/PhysioDevices/reference/readEmbracePlusAvro.md) | Multi-rate recording |
+| Shimmer Consensys export | [`readShimmer()`](https://x-biosignal.github.io/PhysioDevices/reference/readShimmer.md) | Multi-rate recording |
+| Polar HR/RR export | [`readPolar()`](https://x-biosignal.github.io/PhysioDevices/reference/readPolar.md) | Recording with beat events |
+| BIOPAC AcqKnowledge | [`readBIOPAC()`](https://x-biosignal.github.io/PhysioDevices/reference/readBIOPAC.md) | Multi-rate recording |
+| Delsys Trigno | [`readDelsysTrigno()`](https://x-biosignal.github.io/PhysioDevices/reference/readDelsysTrigno.md) | Multi-rate EMG/IMU recording |
+| Xsens MVNX | [`readXsensMVNX()`](https://x-biosignal.github.io/PhysioDevices/reference/readXsensMVNX.md) | Motion-capture recording |
+
+EmbracePlus and BIOPAC readers expose
+[`hasAvroBackend()`](https://x-biosignal.github.io/PhysioDevices/reference/hasAvroBackend.md)
+and
+[`hasBioread()`](https://x-biosignal.github.io/PhysioDevices/reference/hasBioread.md)
+so applications can check optional backends before importing.
+
+## Ecosystem role
+
+`PhysioDevices` is an acquisition adapter. Its outputs use the common
+`PhysioCore` model and can move into preprocessing, modality-specific
+analysis, cross-modal synchronization, or streaming workflows without a
+device-specific container.
+
+## Documentation
+
+- [Function reference and
+  vignettes](https://x-biosignal.r-universe.dev/PhysioDevices)
+- [Source repository](https://github.com/x-biosignal/PhysioDevices)
+- [Issue tracker](https://github.com/x-biosignal/PhysioDevices/issues)
+
+## Citation
+
+``` r
+
+citation("PhysioDevices")
+```
+
+See the ecosystem
+[governance](https://github.com/x-biosignal/PhysioExperiment/blob/main/GOVERNANCE.md),
+[support
+policy](https://github.com/x-biosignal/PhysioExperiment/blob/main/SUPPORT.md),
+and [contribution
+guide](https://github.com/x-biosignal/PhysioExperiment/blob/main/CONTRIBUTING.md).
+
+## Author and license
+
+Author and maintainer: **Yusuke Matsui**. Licensed under the [MIT
+License](https://x-biosignal.github.io/PhysioDevices/LICENSE).
+
+# Package index
+
+## All functions
+
+- [`hasAvroBackend()`](https://x-biosignal.github.io/PhysioDevices/reference/hasAvroBackend.md)
+  : Is an Avro backend available?
+- [`hasBioread()`](https://x-biosignal.github.io/PhysioDevices/reference/hasBioread.md)
+  : Is a BIOPAC (bioread) backend available?
+- [`readBIOPAC()`](https://x-biosignal.github.io/PhysioDevices/reference/readBIOPAC.md)
+  : Read a BIOPAC AcqKnowledge (.acq) file
+- [`readDelsysTrigno()`](https://x-biosignal.github.io/PhysioDevices/reference/readDelsysTrigno.md)
+  : Read a Delsys Trigno CSV export
+- [`readEmbracePlusAvro()`](https://x-biosignal.github.io/PhysioDevices/reference/readEmbracePlusAvro.md)
+  : Read an Empatica EmbracePlus Avro container
+- [`readEmpaticaE4()`](https://x-biosignal.github.io/PhysioDevices/reference/readEmpaticaE4.md)
+  : Read an Empatica E4 CSV session directory
+- [`readPolar()`](https://x-biosignal.github.io/PhysioDevices/reference/readPolar.md)
+  : Read a Polar heart-rate / R-R interval export
+- [`readShimmer()`](https://x-biosignal.github.io/PhysioDevices/reference/readShimmer.md)
+  : Read a Shimmer GSR3+ Consensys CSV export
+- [`readXsensMVNX()`](https://x-biosignal.github.io/PhysioDevices/reference/readXsensMVNX.md)
+  : Read an Xsens MVNX motion-capture export
+
