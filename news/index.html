@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">PhysioDevices</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,6 +19,7 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/apple-watch.html">Analysing Apple Watch data end to end</a></li>
+    <li><a class="dropdown-item" href="../articles/fitbit.html">Analysing Fitbit and Google Pixel data</a></li>
   </ul></li>
       </ul><ul class="navbar-nav"><li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-ecosystem" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Ecosystem</button>
@@ -55,6 +56,15 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.4.0" id="physiodevices-040">PhysioDevices 0.4.0<a class="anchor" aria-label="anchor" href="#physiodevices-040"></a></h2>
+<p>Fitbit / Google Pixel ingestion.</p>
+<ul><li>
+<code><a href="../reference/readFitbit.html">readFitbit()</a></code> parses a Fitbit account archive or Google Takeout directory (per-day JSON, plus SpO2 CSV) into tidy per-modality series – heart rate, steps, SpO2, resting heart rate – and sleep-stage intervals plus Fitbit’s own per-log sleep summary. Files are discovered by name and unreadable ones are skipped with a warning. Google Pixel Watch health data is stored in Fitbit, so the same reader covers it.</li>
+<li>
+<code><a href="../reference/fitbitSeries.html">fitbitSeries()</a></code> extracts one modality. The <code>sleep</code> stages feed <code>PhysioWearable::summarizeSleepStages()</code> and <code>spo2</code> feeds <code>PhysioWearable::spo2Metrics()</code>.</li>
+<li>New vignette <code>fitbit</code>. Requires the <code>jsonlite</code> package.</li>
+</ul></div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.0" id="physiodevices-030">PhysioDevices 0.3.0<a class="anchor" aria-label="anchor" href="#physiodevices-030"></a></h2>
 <p>Apple Watch / Apple Health ingestion.</p>
 <ul><li>
@@ -65,7 +75,8 @@
 <code><a href="../reference/readAppleECG.html">readAppleECG()</a></code> reads the Apple Watch single-lead ECG CSV export into a <code>PhysioExperiment</code> (voltage, sample rate and classification from the header), ready for the <code>PhysioECG</code> beat-detection / HRV functions.</li>
 <li>New vignette <code>apple-watch</code> walks an export through HR/HRV, SpO2, sleep, activity and ECG end to end.</li>
 </ul></div>
-  </main></div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">

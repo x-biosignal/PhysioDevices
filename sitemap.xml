@@ -4,6 +4,7 @@
 <url><loc>https://x-biosignal.github.io/PhysioDevices/CONTRIBUTING.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioDevices/LICENSE-text.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioDevices/articles/apple-watch.html</loc></url>
+<url><loc>https://x-biosignal.github.io/PhysioDevices/articles/fitbit.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioDevices/articles/index.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioDevices/authors.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioDevices/index.html</loc></url>
@@ -12,6 +13,7 @@
 <url><loc>https://x-biosignal.github.io/PhysioDevices/reference/appleHealthExperiment.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioDevices/reference/appleHealthSeries.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioDevices/reference/appleHealthTypes.html</loc></url>
+<url><loc>https://x-biosignal.github.io/PhysioDevices/reference/fitbitSeries.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioDevices/reference/hasAvroBackend.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioDevices/reference/hasBioread.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioDevices/reference/index.html</loc></url>
@@ -21,6 +23,7 @@
 <url><loc>https://x-biosignal.github.io/PhysioDevices/reference/readDelsysTrigno.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioDevices/reference/readEmbracePlusAvro.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioDevices/reference/readEmpaticaE4.html</loc></url>
+<url><loc>https://x-biosignal.github.io/PhysioDevices/reference/readFitbit.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioDevices/reference/readPolar.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioDevices/reference/readShimmer.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioDevices/reference/readXsensMVNX.html</loc></url>

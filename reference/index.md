@@ -8,6 +8,8 @@
   : Extract one modality's samples from an Apple Health export
 - [`appleHealthTypes()`](https://x-biosignal.github.io/PhysioDevices/reference/appleHealthTypes.md)
   : Summarise the record types in an Apple Health export
+- [`fitbitSeries()`](https://x-biosignal.github.io/PhysioDevices/reference/fitbitSeries.md)
+  : Extract one modality from a Fitbit archive
 - [`hasAvroBackend()`](https://x-biosignal.github.io/PhysioDevices/reference/hasAvroBackend.md)
   : Is an Avro backend available?
 - [`hasBioread()`](https://x-biosignal.github.io/PhysioDevices/reference/hasBioread.md)
@@ -24,6 +26,8 @@
   : Read an Empatica EmbracePlus Avro container
 - [`readEmpaticaE4()`](https://x-biosignal.github.io/PhysioDevices/reference/readEmpaticaE4.md)
   : Read an Empatica E4 CSV session directory
+- [`readFitbit()`](https://x-biosignal.github.io/PhysioDevices/reference/readFitbit.md)
+  : Read a Fitbit / Google Pixel data archive
 - [`readPolar()`](https://x-biosignal.github.io/PhysioDevices/reference/readPolar.md)
   : Read a Polar heart-rate / R-R interval export
 - [`readShimmer()`](https://x-biosignal.github.io/PhysioDevices/reference/readShimmer.md)

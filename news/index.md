@@ -1,5 +1,22 @@
 # Changelog
 
+## PhysioDevices 0.4.0
+
+Fitbit / Google Pixel ingestion.
+
+- [`readFitbit()`](https://x-biosignal.github.io/PhysioDevices/reference/readFitbit.md)
+  parses a Fitbit account archive or Google Takeout directory (per-day
+  JSON, plus SpO2 CSV) into tidy per-modality series – heart rate,
+  steps, SpO2, resting heart rate – and sleep-stage intervals plus
+  Fitbit’s own per-log sleep summary. Files are discovered by name and
+  unreadable ones are skipped with a warning. Google Pixel Watch health
+  data is stored in Fitbit, so the same reader covers it.
+- [`fitbitSeries()`](https://x-biosignal.github.io/PhysioDevices/reference/fitbitSeries.md)
+  extracts one modality. The `sleep` stages feed
+  `PhysioWearable::summarizeSleepStages()` and `spo2` feeds
+  `PhysioWearable::spo2Metrics()`.
+- New vignette `fitbit`. Requires the `jsonlite` package.
+
 ## PhysioDevices 0.3.0
 
 Apple Watch / Apple Health ingestion.
