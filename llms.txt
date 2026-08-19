@@ -101,6 +101,8 @@ License](https://x-biosignal.github.io/PhysioDevices/LICENSE).
   : Is an Avro backend available?
 - [`hasBioread()`](https://x-biosignal.github.io/PhysioDevices/reference/hasBioread.md)
   : Is a BIOPAC (bioread) backend available?
+- [`readActiwatch()`](https://x-biosignal.github.io/PhysioDevices/reference/readActiwatch.md)
+  : Read an Actiwatch AWD actigraphy file
 - [`readAppleECG()`](https://x-biosignal.github.io/PhysioDevices/reference/readAppleECG.md)
   : Read an Apple Watch ECG recording
 - [`readAppleHealth()`](https://x-biosignal.github.io/PhysioDevices/reference/readAppleHealth.md)
@@ -117,6 +119,8 @@ License](https://x-biosignal.github.io/PhysioDevices/LICENSE).
   : Read an Empatica E4 CSV session directory
 - [`readFitbit()`](https://x-biosignal.github.io/PhysioDevices/reference/readFitbit.md)
   : Read a Fitbit / Google Pixel data archive
+- [`readGENEActiv()`](https://x-biosignal.github.io/PhysioDevices/reference/readGENEActiv.md)
+  : Read a GENEActiv .bin accelerometer file
 - [`readGPX()`](https://x-biosignal.github.io/PhysioDevices/reference/readGPX.md)
   : Read a GPX (GPS Exchange) track file
 - [`readGT3X()`](https://x-biosignal.github.io/PhysioDevices/reference/readGT3X.md)

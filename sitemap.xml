@@ -18,6 +18,7 @@
 <url><loc>https://x-biosignal.github.io/PhysioDevices/reference/hasAvroBackend.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioDevices/reference/hasBioread.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioDevices/reference/index.html</loc></url>
+<url><loc>https://x-biosignal.github.io/PhysioDevices/reference/readActiwatch.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioDevices/reference/readAppleECG.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioDevices/reference/readAppleHealth.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioDevices/reference/readBIOPAC.html</loc></url>
@@ -26,6 +27,7 @@
 <url><loc>https://x-biosignal.github.io/PhysioDevices/reference/readEmbracePlusAvro.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioDevices/reference/readEmpaticaE4.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioDevices/reference/readFitbit.html</loc></url>
+<url><loc>https://x-biosignal.github.io/PhysioDevices/reference/readGENEActiv.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioDevices/reference/readGPX.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioDevices/reference/readGT3X.html</loc></url>
 <url><loc>https://x-biosignal.github.io/PhysioDevices/reference/readGoogleFit.html</loc></url>

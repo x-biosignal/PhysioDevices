@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">PhysioDevices</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,6 +56,14 @@
       <small>Source: <a href="https://github.com/x-biosignal/PhysioDevices/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.8.0" id="physiodevices-080">PhysioDevices 0.8.0<a class="anchor" aria-label="anchor" href="#physiodevices-080"></a></h2>
+<p>GENEActiv and Actiwatch (research accelerometry / clinical actigraphy).</p>
+<ul><li>
+<code><a href="../reference/readGENEActiv.html">readGENEActiv()</a></code> reads a GENEActiv <code>.bin</code> file into the tri-axial-acceleration <code>PhysioExperiment</code> (via <code>GGIRread</code>), completing the raw research-accelerometer set (ActiGraph, Axivity, GENEActiv). A <code>sampling_rate</code> override is available for files whose header does not report the rate.</li>
+<li>
+<code><a href="../reference/readActiwatch.html">readActiwatch()</a></code> reads a Philips/Respironics Actiwatch <code>.awd</code> file into per-epoch activity counts with timestamps, feeding <code>PhysioWearable::coleKripke()</code> / <code>summarizeSleep()</code>. The start date is parsed locale-independently; the epoch is a parameter (the <code>.awd</code> header does not carry it reliably).</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.7.0" id="physiodevices-070">PhysioDevices 0.7.0<a class="anchor" aria-label="anchor" href="#physiodevices-070"></a></h2>
 <p>Workout / GPS (Garmin, Strava, …) and Oura Ring.</p>

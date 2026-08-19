@@ -1,5 +1,22 @@
 # Changelog
 
+## PhysioDevices 0.8.0
+
+GENEActiv and Actiwatch (research accelerometry / clinical actigraphy).
+
+- [`readGENEActiv()`](https://x-biosignal.github.io/PhysioDevices/reference/readGENEActiv.md)
+  reads a GENEActiv `.bin` file into the tri-axial-acceleration
+  `PhysioExperiment` (via `GGIRread`), completing the raw
+  research-accelerometer set (ActiGraph, Axivity, GENEActiv). A
+  `sampling_rate` override is available for files whose header does not
+  report the rate.
+- [`readActiwatch()`](https://x-biosignal.github.io/PhysioDevices/reference/readActiwatch.md)
+  reads a Philips/Respironics Actiwatch `.awd` file into per-epoch
+  activity counts with timestamps, feeding
+  `PhysioWearable::coleKripke()` / `summarizeSleep()`. The start date is
+  parsed locale-independently; the epoch is a parameter (the `.awd`
+  header does not carry it reliably).
+
 ## PhysioDevices 0.7.0
 
 Workout / GPS (Garmin, Strava, …) and Oura Ring.
