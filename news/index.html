@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">PhysioDevices</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,6 +55,17 @@
       <small>Source: <a href="https://github.com/x-biosignal/PhysioDevices/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.5.1" id="physiodevices-051">PhysioDevices 0.5.1<a class="anchor" aria-label="anchor" href="#physiodevices-051"></a></h2>
+<p>Fixes to the Google Fit / Health Connect readers (from a code review of 0.5.0).</p>
+<ul><li>
+<strong>Timezone</strong>: <code>.iso_time</code> is now offset-aware – a trailing <code>Z</code> or a numeric offset (<code>+09:00</code>) is parsed as an absolute instant, so timestamps are no longer wrong by the offset (previously e.g. a <code>...Z</code> value under <code>tz="Asia/Tokyo"</code> was 9 h off).</li>
+<li>
+<code><a href="../reference/readGoogleFit.html">readGoogleFit()</a></code> no longer aborts on a data point with an empty <code>fitValue</code> (it becomes <code>NA</code>), re-sorts heart-rate/step series across source files, warns on unreadable files, and handles a nanosecond value that arrives unquoted.</li>
+<li>
+<code><a href="../reference/readHealthConnect.html">readHealthConnect()</a></code> routes <code>HeartRateVariability*</code> to its own <code>hrv</code> modality (no longer mixed into heart rate), skips unrecognised record types with a warning instead of inventing a modality from the last numeric column, avoids an interval <code>end</code> column as the sample time, no longer treats a <code>sessionType</code> column as the sleep stage, warns when a sleep <code>end</code> is missing, and builds each modality with a single <code>rbind</code>.</li>
+<li>The heart-rate column is named <code>bpm</code> in all three consumer readers.</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.5.0" id="physiodevices-050">PhysioDevices 0.5.0<a class="anchor" aria-label="anchor" href="#physiodevices-050"></a></h2>
 <p>Google Fit and Android Health Connect ingestion.</p>

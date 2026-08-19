@@ -1,5 +1,28 @@
 # Changelog
 
+## PhysioDevices 0.5.1
+
+Fixes to the Google Fit / Health Connect readers (from a code review of
+0.5.0).
+
+- **Timezone**: `.iso_time` is now offset-aware – a trailing `Z` or a
+  numeric offset (`+09:00`) is parsed as an absolute instant, so
+  timestamps are no longer wrong by the offset (previously e.g. a `...Z`
+  value under `tz="Asia/Tokyo"` was 9 h off).
+- [`readGoogleFit()`](https://x-biosignal.github.io/PhysioDevices/reference/readGoogleFit.md)
+  no longer aborts on a data point with an empty `fitValue` (it becomes
+  `NA`), re-sorts heart-rate/step series across source files, warns on
+  unreadable files, and handles a nanosecond value that arrives
+  unquoted.
+- [`readHealthConnect()`](https://x-biosignal.github.io/PhysioDevices/reference/readHealthConnect.md)
+  routes `HeartRateVariability*` to its own `hrv` modality (no longer
+  mixed into heart rate), skips unrecognised record types with a warning
+  instead of inventing a modality from the last numeric column, avoids
+  an interval `end` column as the sample time, no longer treats a
+  `sessionType` column as the sleep stage, warns when a sleep `end` is
+  missing, and builds each modality with a single `rbind`.
+- The heart-rate column is named `bpm` in all three consumer readers.
+
 ## PhysioDevices 0.5.0
 
 Google Fit and Android Health Connect ingestion.
