@@ -20,6 +20,8 @@
   : Read an Apple Health export
 - [`readBIOPAC()`](https://x-biosignal.github.io/PhysioDevices/reference/readBIOPAC.md)
   : Read a BIOPAC AcqKnowledge (.acq) file
+- [`readCWA()`](https://x-biosignal.github.io/PhysioDevices/reference/readCWA.md)
+  : Read an Axivity AX3/AX6 CWA accelerometer file
 - [`readDelsysTrigno()`](https://x-biosignal.github.io/PhysioDevices/reference/readDelsysTrigno.md)
   : Read a Delsys Trigno CSV export
 - [`readEmbracePlusAvro()`](https://x-biosignal.github.io/PhysioDevices/reference/readEmbracePlusAvro.md)
@@ -28,6 +30,8 @@
   : Read an Empatica E4 CSV session directory
 - [`readFitbit()`](https://x-biosignal.github.io/PhysioDevices/reference/readFitbit.md)
   : Read a Fitbit / Google Pixel data archive
+- [`readGT3X()`](https://x-biosignal.github.io/PhysioDevices/reference/readGT3X.md)
+  : Read an ActiGraph GT3X accelerometer file
 - [`readGoogleFit()`](https://x-biosignal.github.io/PhysioDevices/reference/readGoogleFit.md)
   : Read a Google Fit (Google Takeout) export
 - [`readHealthConnect()`](https://x-biosignal.github.io/PhysioDevices/reference/readHealthConnect.md)

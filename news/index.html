@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">PhysioDevices</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,6 +20,7 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/apple-watch.html">Analysing Apple Watch data end to end</a></li>
     <li><a class="dropdown-item" href="../articles/fitbit.html">Analysing Fitbit and Google Pixel data</a></li>
+    <li><a class="dropdown-item" href="../articles/research-accelerometers.html">Research accelerometers: ActiGraph and Axivity</a></li>
   </ul></li>
       </ul><ul class="navbar-nav"><li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-ecosystem" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Ecosystem</button>
@@ -55,6 +56,13 @@
       <small>Source: <a href="https://github.com/x-biosignal/PhysioDevices/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.6.0" id="physiodevices-060">PhysioDevices 0.6.0<a class="anchor" aria-label="anchor" href="#physiodevices-060"></a></h2>
+<p>Research-grade raw accelerometers.</p>
+<ul><li>
+<code><a href="../reference/readGT3X.html">readGT3X()</a></code> reads an ActiGraph <code>.gt3x</code> file and <code><a href="../reference/readCWA.html">readCWA()</a></code> an Axivity AX3/AX6 <code>.cwa</code> file (the physical-activity / accelerometry field standards in US and UK cohorts) into the ecosystem’s tri-axial-acceleration <code>PhysioExperiment</code> – the same shape as <code>PhysioWearable::readAccelCSV()</code>, so they feed <code>computeENMO()</code> / <code>summarizeFreeLiving()</code> directly. The binary decode is delegated to the validated <code>read.gt3x</code> / <code>GGIRread</code> packages (new <code>Suggests</code>).</li>
+<li>New vignette <code>research-accelerometers</code>.</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.5.1" id="physiodevices-051">PhysioDevices 0.5.1<a class="anchor" aria-label="anchor" href="#physiodevices-051"></a></h2>
 <p>Fixes to the Google Fit / Health Connect readers (from a code review of 0.5.0).</p>

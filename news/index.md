@@ -1,5 +1,20 @@
 # Changelog
 
+## PhysioDevices 0.6.0
+
+Research-grade raw accelerometers.
+
+- [`readGT3X()`](https://x-biosignal.github.io/PhysioDevices/reference/readGT3X.md)
+  reads an ActiGraph `.gt3x` file and
+  [`readCWA()`](https://x-biosignal.github.io/PhysioDevices/reference/readCWA.md)
+  an Axivity AX3/AX6 `.cwa` file (the physical-activity / accelerometry
+  field standards in US and UK cohorts) into the ecosystem’s
+  tri-axial-acceleration `PhysioExperiment` – the same shape as
+  `PhysioWearable::readAccelCSV()`, so they feed `computeENMO()` /
+  `summarizeFreeLiving()` directly. The binary decode is delegated to
+  the validated `read.gt3x` / `GGIRread` packages (new `Suggests`).
+- New vignette `research-accelerometers`.
+
 ## PhysioDevices 0.5.1
 
 Fixes to the Google Fit / Health Connect readers (from a code review of
