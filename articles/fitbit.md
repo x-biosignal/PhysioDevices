@@ -76,6 +76,29 @@ For epoch-level free-living metrics (ENMO, intensity, fragmentation, HAR
 → ICF) you need raw accelerometry, which Fitbit does not export — only
 derived activity.
 
+## Google Fit and Health Connect
+
+Phone-level Google data has two other paths, both reusing the same
+analysis:
+
+``` r
+
+# Google Takeout "Fit": granular heart-rate/step JSON + daily-summary CSVs
+gf <- readGoogleFit("Takeout/Fit", tz = "Asia/Tokyo")
+gf$heart_rate
+gf$daily
+```
+
+``` r
+
+# Android Health Connect: a per-record-type CSV export
+hc <- readHealthConnect("health_connect_export", tz = "Asia/Tokyo")
+PhysioWearable::spo2Metrics(hc$spo2$value, time = hc$spo2$time)
+PhysioWearable::summarizeSleepStages(
+  hc$sleep, asleep_levels = c("light", "deep", "rem"), wake_levels = "awake",
+  stage_cols = c(deep = "deep", rem = "rem"))
+```
+
 ## Scope and limitations
 
 - Covers the Fitbit **account archive / Google Takeout** JSON layout;
@@ -83,8 +106,14 @@ derived activity.
   filename patterns and skips what it cannot parse).
 - The Fitbit **Web API** (OAuth2, live JSON) is a separate path not
   covered here.
-- **Google Pixel Watch** = Fitbit data (this reader). Phone-level Google
-  data (Google Fit / Health Connect) is a different export and not
-  covered here.
+- **Google Pixel Watch** = Fitbit data
+  ([`readFitbit()`](https://x-biosignal.github.io/PhysioDevices/reference/readFitbit.md)).
+- **Google Fit**
+  ([`readGoogleFit()`](https://x-biosignal.github.io/PhysioDevices/reference/readGoogleFit.md),
+  Takeout) is being retired by Google in favour of **Health Connect**
+  ([`readHealthConnect()`](https://x-biosignal.github.io/PhysioDevices/reference/readHealthConnect.md),
+  per-type CSV export). Health Connect has no single official export
+  file, so column names vary by exporter; the reader detects them
+  heuristically.
 - No raw acceleration and no continuous SpO2 (spot readings) — same
   limits as the Apple Watch workflow.

@@ -115,6 +115,10 @@ License](https://x-biosignal.github.io/PhysioDevices/LICENSE).
   : Read an Empatica E4 CSV session directory
 - [`readFitbit()`](https://x-biosignal.github.io/PhysioDevices/reference/readFitbit.md)
   : Read a Fitbit / Google Pixel data archive
+- [`readGoogleFit()`](https://x-biosignal.github.io/PhysioDevices/reference/readGoogleFit.md)
+  : Read a Google Fit (Google Takeout) export
+- [`readHealthConnect()`](https://x-biosignal.github.io/PhysioDevices/reference/readHealthConnect.md)
+  : Read an Android Health Connect CSV export
 - [`readPolar()`](https://x-biosignal.github.io/PhysioDevices/reference/readPolar.md)
   : Read a Polar heart-rate / R-R interval export
 - [`readShimmer()`](https://x-biosignal.github.io/PhysioDevices/reference/readShimmer.md)

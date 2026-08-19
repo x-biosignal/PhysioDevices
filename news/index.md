@@ -1,5 +1,23 @@
 # Changelog
 
+## PhysioDevices 0.5.0
+
+Google Fit and Android Health Connect ingestion.
+
+- [`readGoogleFit()`](https://x-biosignal.github.io/PhysioDevices/reference/readGoogleFit.md)
+  parses a Google Takeout “Fit” export: the granular per-type JSON under
+  “All Data” (heart rate, steps; decoding the nanosecond timestamps) and
+  the “Daily activity metrics” summary CSVs.
+- [`readHealthConnect()`](https://x-biosignal.github.io/PhysioDevices/reference/readHealthConnect.md)
+  parses an Android Health Connect per-record-type CSV export
+  (`HeartRate`, `Steps`, `OxygenSaturation`, `RespiratoryRate`,
+  `SleepSession` stages), detecting the time/value columns heuristically
+  since exporter layouts vary. `spo2` feeds
+  `PhysioWearable::spo2Metrics()` and `sleep` feeds
+  `PhysioWearable::summarizeSleepStages()`.
+- The `fitbit` vignette now also shows the Google Fit / Health Connect
+  paths.
+
 ## PhysioDevices 0.4.0
 
 Fitbit / Google Pixel ingestion.

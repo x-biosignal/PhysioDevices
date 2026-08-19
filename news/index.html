@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">PhysioDevices</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,6 +55,15 @@
       <small>Source: <a href="https://github.com/x-biosignal/PhysioDevices/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.5.0" id="physiodevices-050">PhysioDevices 0.5.0<a class="anchor" aria-label="anchor" href="#physiodevices-050"></a></h2>
+<p>Google Fit and Android Health Connect ingestion.</p>
+<ul><li>
+<code><a href="../reference/readGoogleFit.html">readGoogleFit()</a></code> parses a Google Takeout “Fit” export: the granular per-type JSON under “All Data” (heart rate, steps; decoding the nanosecond timestamps) and the “Daily activity metrics” summary CSVs.</li>
+<li>
+<code><a href="../reference/readHealthConnect.html">readHealthConnect()</a></code> parses an Android Health Connect per-record-type CSV export (<code>HeartRate</code>, <code>Steps</code>, <code>OxygenSaturation</code>, <code>RespiratoryRate</code>, <code>SleepSession</code> stages), detecting the time/value columns heuristically since exporter layouts vary. <code>spo2</code> feeds <code>PhysioWearable::spo2Metrics()</code> and <code>sleep</code> feeds <code>PhysioWearable::summarizeSleepStages()</code>.</li>
+<li>The <code>fitbit</code> vignette now also shows the Google Fit / Health Connect paths.</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.4.0" id="physiodevices-040">PhysioDevices 0.4.0<a class="anchor" aria-label="anchor" href="#physiodevices-040"></a></h2>
 <p>Fitbit / Google Pixel ingestion.</p>

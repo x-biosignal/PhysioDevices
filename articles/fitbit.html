@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">PhysioDevices</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -153,6 +153,24 @@ HAR → ICF) you need raw accelerometry, which Fitbit does not export —
 only derived activity.</p>
 </div>
 <div class="section level2">
+<h2 id="google-fit-and-health-connect">Google Fit and Health Connect<a class="anchor" aria-label="anchor" href="#google-fit-and-health-connect"></a>
+</h2>
+<p>Phone-level Google data has two other paths, both reusing the same
+analysis:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Google Takeout "Fit": granular heart-rate/step JSON + daily-summary CSVs</span></span>
+<span><span class="va">gf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/readGoogleFit.html">readGoogleFit</a></span><span class="op">(</span><span class="st">"Takeout/Fit"</span>, tz <span class="op">=</span> <span class="st">"Asia/Tokyo"</span><span class="op">)</span></span>
+<span><span class="va">gf</span><span class="op">$</span><span class="va">heart_rate</span></span>
+<span><span class="va">gf</span><span class="op">$</span><span class="va">daily</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Android Health Connect: a per-record-type CSV export</span></span>
+<span><span class="va">hc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/readHealthConnect.html">readHealthConnect</a></span><span class="op">(</span><span class="st">"health_connect_export"</span>, tz <span class="op">=</span> <span class="st">"Asia/Tokyo"</span><span class="op">)</span></span>
+<span><span class="fu">PhysioWearable</span><span class="fu">::</span><span class="fu">spo2Metrics</span><span class="op">(</span><span class="va">hc</span><span class="op">$</span><span class="va">spo2</span><span class="op">$</span><span class="va">value</span>, time <span class="op">=</span> <span class="va">hc</span><span class="op">$</span><span class="va">spo2</span><span class="op">$</span><span class="va">time</span><span class="op">)</span></span>
+<span><span class="fu">PhysioWearable</span><span class="fu">::</span><span class="fu">summarizeSleepStages</span><span class="op">(</span></span>
+<span>  <span class="va">hc</span><span class="op">$</span><span class="va">sleep</span>, asleep_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"light"</span>, <span class="st">"deep"</span>, <span class="st">"rem"</span><span class="op">)</span>, wake_levels <span class="op">=</span> <span class="st">"awake"</span>,</span>
+<span>  stage_cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>deep <span class="op">=</span> <span class="st">"deep"</span>, rem <span class="op">=</span> <span class="st">"rem"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
 <h2 id="scope-and-limitations">Scope and limitations<a class="anchor" aria-label="anchor" href="#scope-and-limitations"></a>
 </h2>
 <ul>
@@ -162,9 +180,14 @@ keys off filename patterns and skips what it cannot parse).</li>
 <li>The Fitbit <strong>Web API</strong> (OAuth2, live JSON) is a
 separate path not covered here.</li>
 <li>
-<strong>Google Pixel Watch</strong> = Fitbit data (this reader).
-Phone-level Google data (Google Fit / Health Connect) is a different
-export and not covered here.</li>
+<strong>Google Pixel Watch</strong> = Fitbit data
+(<code><a href="../reference/readFitbit.html">readFitbit()</a></code>).</li>
+<li>
+<strong>Google Fit</strong> (<code><a href="../reference/readGoogleFit.html">readGoogleFit()</a></code>, Takeout)
+is being retired by Google in favour of <strong>Health Connect</strong>
+(<code><a href="../reference/readHealthConnect.html">readHealthConnect()</a></code>, per-type CSV export). Health Connect
+has no single official export file, so column names vary by exporter;
+the reader detects them heuristically.</li>
 <li>No raw acceleration and no continuous SpO2 (spot readings) — same
 limits as the Apple Watch workflow.</li>
 </ul>
