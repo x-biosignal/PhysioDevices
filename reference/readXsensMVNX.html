@@ -17,7 +17,7 @@ segment/joint names.'></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">PhysioDevices</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,6 +26,10 @@ segment/joint names.'></head><body>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/apple-watch.html">Analysing Apple Watch data end to end</a></li>
+  </ul></li>
       </ul><ul class="navbar-nav"><li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-ecosystem" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Ecosystem</button>
   <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-ecosystem"><li><a class="external-link dropdown-item" href="https://x-biosignal.github.io/PhysioCore/">PhysioCore</a></li>
@@ -63,7 +67,7 @@ segment/joint names.'></head><body>
 
     <div class="ref-description section level2">
     <p>Parses an Xsens MVN Analyze <code>.mvnx</code> XML file into a
-<a href="https://x-biosignal.r-universe.dev/PhysioCore/reference/MultiRatePhysioExperiment.html" class="external-link">PhysioCore::MultiRatePhysioExperiment</a>. Each kinematic signal present in the
+<a href="https://x-biosignal.github.io/PhysioCore//reference/MultiRatePhysioExperiment.html" class="external-link">PhysioCore::MultiRatePhysioExperiment</a>. Each kinematic signal present in the
 "normal" frames (segment position, orientation, velocity, acceleration,
 angular velocity/acceleration, per-joint angles, and centre of mass) becomes
 a stream at the subject frame rate, with per-channel labels built from the
@@ -85,7 +89,7 @@ segment/joint names.</p>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A <a href="https://x-biosignal.r-universe.dev/PhysioCore/reference/MultiRatePhysioExperiment.html" class="external-link">PhysioCore::MultiRatePhysioExperiment</a>.</p>
+    <p>A <a href="https://x-biosignal.github.io/PhysioCore//reference/MultiRatePhysioExperiment.html" class="external-link">PhysioCore::MultiRatePhysioExperiment</a>.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
@@ -101,7 +105,7 @@ segment/joint names.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"xsens_sample.mvnx"</span>, package <span class="op">=</span> <span class="st">"PhysioDevices"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nchar.html" class="external-link">nzchar</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"xml2"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span>  <span class="va">mr</span> <span class="op">&lt;-</span> <span class="fu">readXsensMVNX</span><span class="op">(</span><span class="va">f</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="fu">PhysioCore</span><span class="fu">::</span><span class="fu"><a href="https://x-biosignal.r-universe.dev/PhysioCore/reference/streamNames.html" class="external-link">streamNames</a></span><span class="op">(</span><span class="va">mr</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">PhysioCore</span><span class="fu">::</span><span class="fu"><a href="https://x-biosignal.github.io/PhysioCore//reference/streamNames.html" class="external-link">streamNames</a></span><span class="op">(</span><span class="va">mr</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "position"     "orientation"  "acceleration" "jointAngle"   "centerOfMass"</span>
 </code></pre></div>

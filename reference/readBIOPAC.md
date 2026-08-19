@@ -4,11 +4,11 @@ Parses a BIOPAC AcqKnowledge `.acq` file (via the Python `bioread`
 module through reticulate; see
 [`hasBioread()`](https://x-biosignal.github.io/PhysioDevices/reference/hasBioread.md))
 into a
-[PhysioCore::MultiRatePhysioExperiment](https://x-biosignal.r-universe.dev/PhysioCore/reference/MultiRatePhysioExperiment.html).
+[PhysioCore::MultiRatePhysioExperiment](https://x-biosignal.github.io/PhysioCore//reference/MultiRatePhysioExperiment.html).
 Each acquisition channel becomes a stream at its own sample rate
 (channels may be acquired at different rates via frequency dividers),
 carrying its label and unit. Event markers become
-[PhysioCore::PhysioEvents](https://x-biosignal.r-universe.dev/PhysioCore/reference/PhysioEvents.html)
+[PhysioCore::PhysioEvents](https://x-biosignal.github.io/PhysioCore//reference/PhysioEvents.html)
 on the fastest stream.
 
 ## Usage
@@ -26,7 +26,7 @@ readBIOPAC(path)
 ## Value
 
 A
-[PhysioCore::MultiRatePhysioExperiment](https://x-biosignal.r-universe.dev/PhysioCore/reference/MultiRatePhysioExperiment.html).
+[PhysioCore::MultiRatePhysioExperiment](https://x-biosignal.github.io/PhysioCore//reference/MultiRatePhysioExperiment.html).
 
 ## References
 

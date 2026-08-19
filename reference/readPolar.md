@@ -3,7 +3,7 @@
 Reads a Polar (Flow / H10) export into a `PhysioExperiment`. A
 heart-rate column (bpm) becomes the `"raw"` assay; R-R intervals (ms)
 are attached as
-[PhysioCore::PhysioEvents](https://x-biosignal.r-universe.dev/PhysioCore/reference/PhysioEvents.html)
+[PhysioCore::PhysioEvents](https://x-biosignal.github.io/PhysioCore//reference/PhysioEvents.html)
 (one event per beat, with onset at the cumulative R-R time and the
 interval in the value). When only R-R intervals are present,
 instantaneous heart rate (60000 / R-R) is used as the signal.
@@ -27,7 +27,7 @@ readPolar(path, sep = ",")
 ## Value
 
 A `PhysioExperiment`; R-R intervals are available via
-[`PhysioCore::getEvents()`](https://x-biosignal.r-universe.dev/PhysioCore/reference/getEvents.html).
+[`PhysioCore::getEvents()`](https://x-biosignal.github.io/PhysioCore//reference/getEvents.html).
 
 ## References
 

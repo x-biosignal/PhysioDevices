@@ -1,7 +1,7 @@
 # Read a Delsys Trigno CSV export
 
 Parses a Delsys Trigno File Utility / EMGworks CSV export into a
-[PhysioCore::MultiRatePhysioExperiment](https://x-biosignal.r-universe.dev/PhysioCore/reference/MultiRatePhysioExperiment.html).
+[PhysioCore::MultiRatePhysioExperiment](https://x-biosignal.github.io/PhysioCore//reference/MultiRatePhysioExperiment.html).
 EMG channels (high rate) and the IMU channels (accelerometer / gyroscope
 / magnetometer, lower rate) are separated into their own streams, each
 at the rate implied by its per-channel `X[s]` time column, with
@@ -26,7 +26,7 @@ readDelsysTrigno(path, sep = ",")
 ## Value
 
 A
-[PhysioCore::MultiRatePhysioExperiment](https://x-biosignal.r-universe.dev/PhysioCore/reference/MultiRatePhysioExperiment.html)
+[PhysioCore::MultiRatePhysioExperiment](https://x-biosignal.github.io/PhysioCore//reference/MultiRatePhysioExperiment.html)
 with an `"emg"` stream and, when present, an `"imu"` stream.
 
 ## References

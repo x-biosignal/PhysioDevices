@@ -2,7 +2,7 @@
 
 Reads an Empatica E4 session (a directory of per-signal CSV files) into
 a
-[PhysioCore::MultiRatePhysioExperiment](https://x-biosignal.r-universe.dev/PhysioCore/reference/MultiRatePhysioExperiment.html).
+[PhysioCore::MultiRatePhysioExperiment](https://x-biosignal.github.io/PhysioCore//reference/MultiRatePhysioExperiment.html).
 Each present signal (EDA at 4 Hz, BVP at 64 Hz, ACC at 32 Hz, TEMP at 4
 Hz, HR at 1 Hz) becomes its own stream at its native rate, and the
 per-signal UTC start times are aligned on a common clock via per-stream
@@ -24,7 +24,7 @@ readEmpaticaE4(dir)
 ## Value
 
 A
-[PhysioCore::MultiRatePhysioExperiment](https://x-biosignal.r-universe.dev/PhysioCore/reference/MultiRatePhysioExperiment.html)
+[PhysioCore::MultiRatePhysioExperiment](https://x-biosignal.github.io/PhysioCore//reference/MultiRatePhysioExperiment.html)
 with one stream per signal.
 
 ## References

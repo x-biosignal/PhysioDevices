@@ -2,10 +2,20 @@
 
 ## All functions
 
+- [`appleHealthExperiment()`](https://x-biosignal.github.io/PhysioDevices/reference/appleHealthExperiment.md)
+  : Build a PhysioExperiment from one numeric Apple Health modality
+- [`appleHealthSeries()`](https://x-biosignal.github.io/PhysioDevices/reference/appleHealthSeries.md)
+  : Extract one modality's samples from an Apple Health export
+- [`appleHealthTypes()`](https://x-biosignal.github.io/PhysioDevices/reference/appleHealthTypes.md)
+  : Summarise the record types in an Apple Health export
 - [`hasAvroBackend()`](https://x-biosignal.github.io/PhysioDevices/reference/hasAvroBackend.md)
   : Is an Avro backend available?
 - [`hasBioread()`](https://x-biosignal.github.io/PhysioDevices/reference/hasBioread.md)
   : Is a BIOPAC (bioread) backend available?
+- [`readAppleECG()`](https://x-biosignal.github.io/PhysioDevices/reference/readAppleECG.md)
+  : Read an Apple Watch ECG recording
+- [`readAppleHealth()`](https://x-biosignal.github.io/PhysioDevices/reference/readAppleHealth.md)
+  : Read an Apple Health export
 - [`readBIOPAC()`](https://x-biosignal.github.io/PhysioDevices/reference/readBIOPAC.md)
   : Read a BIOPAC AcqKnowledge (.acq) file
 - [`readDelsysTrigno()`](https://x-biosignal.github.io/PhysioDevices/reference/readDelsysTrigno.md)

@@ -1,7 +1,7 @@
 # Read an Xsens MVNX motion-capture export
 
 Parses an Xsens MVN Analyze `.mvnx` XML file into a
-[PhysioCore::MultiRatePhysioExperiment](https://x-biosignal.r-universe.dev/PhysioCore/reference/MultiRatePhysioExperiment.html).
+[PhysioCore::MultiRatePhysioExperiment](https://x-biosignal.github.io/PhysioCore//reference/MultiRatePhysioExperiment.html).
 Each kinematic signal present in the "normal" frames (segment position,
 orientation, velocity, acceleration, angular velocity/acceleration,
 per-joint angles, and centre of mass) becomes a stream at the subject
@@ -22,7 +22,7 @@ readXsensMVNX(path)
 ## Value
 
 A
-[PhysioCore::MultiRatePhysioExperiment](https://x-biosignal.r-universe.dev/PhysioCore/reference/MultiRatePhysioExperiment.html).
+[PhysioCore::MultiRatePhysioExperiment](https://x-biosignal.github.io/PhysioCore//reference/MultiRatePhysioExperiment.html).
 
 ## References
 
