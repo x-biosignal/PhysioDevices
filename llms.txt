@@ -117,16 +117,22 @@ License](https://x-biosignal.github.io/PhysioDevices/LICENSE).
   : Read an Empatica E4 CSV session directory
 - [`readFitbit()`](https://x-biosignal.github.io/PhysioDevices/reference/readFitbit.md)
   : Read a Fitbit / Google Pixel data archive
+- [`readGPX()`](https://x-biosignal.github.io/PhysioDevices/reference/readGPX.md)
+  : Read a GPX (GPS Exchange) track file
 - [`readGT3X()`](https://x-biosignal.github.io/PhysioDevices/reference/readGT3X.md)
   : Read an ActiGraph GT3X accelerometer file
 - [`readGoogleFit()`](https://x-biosignal.github.io/PhysioDevices/reference/readGoogleFit.md)
   : Read a Google Fit (Google Takeout) export
 - [`readHealthConnect()`](https://x-biosignal.github.io/PhysioDevices/reference/readHealthConnect.md)
   : Read an Android Health Connect CSV export
+- [`readOura()`](https://x-biosignal.github.io/PhysioDevices/reference/readOura.md)
+  : Read an Oura Ring export
 - [`readPolar()`](https://x-biosignal.github.io/PhysioDevices/reference/readPolar.md)
   : Read a Polar heart-rate / R-R interval export
 - [`readShimmer()`](https://x-biosignal.github.io/PhysioDevices/reference/readShimmer.md)
   : Read a Shimmer GSR3+ Consensys CSV export
+- [`readTCX()`](https://x-biosignal.github.io/PhysioDevices/reference/readTCX.md)
+  : Read a TCX (Garmin Training Center) workout file
 - [`readXsensMVNX()`](https://x-biosignal.github.io/PhysioDevices/reference/readXsensMVNX.md)
   : Read an Xsens MVNX motion-capture export
 

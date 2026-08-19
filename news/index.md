@@ -1,5 +1,24 @@
 # Changelog
 
+## PhysioDevices 0.7.0
+
+Workout / GPS (Garmin, Strava, …) and Oura Ring.
+
+- [`readTCX()`](https://x-biosignal.github.io/PhysioDevices/reference/readTCX.md)
+  and
+  [`readGPX()`](https://x-biosignal.github.io/PhysioDevices/reference/readGPX.md)
+  read workout / GPS track files (the common Garmin Connect, Strava,
+  Apple and Google export) into a tidy trackpoint data frame – time,
+  position, altitude, distance, heart rate, cadence/speed – using
+  namespace-robust XPath. This is the practical path for Garmin (whose
+  raw binary `.fit` needs the GitHub-only FITfileR) and closes the
+  workout/GPS gap in the Apple/Google readers.
+- [`readOura()`](https://x-biosignal.github.io/PhysioDevices/reference/readOura.md)
+  reads an Oura Ring sleep export (API v2 JSON): the 5-minute hypnogram
+  is expanded to sleep-stage intervals (feeding
+  `PhysioWearable::summarizeSleepStages()`), alongside the 5-minute
+  heart-rate and HRV (RMSSD) series and Oura’s own sleep summary.
+
 ## PhysioDevices 0.6.0
 
 Research-grade raw accelerometers.
