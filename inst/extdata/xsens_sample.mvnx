@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mvnx xmlns="http://www.xsens.com/mvn/mvnx" version="4">
+  <subject label="Subj01" frameRate="240" segmentCount="2" jointCount="1">
+    <segments>
+      <segment id="1" label="Pelvis"/>
+      <segment id="2" label="L5"/>
+    </segments>
+    <joints>
+      <joint label="jL5S1">
+        <connector1>Pelvis/jL5S1</connector1>
+        <connector2>L5/jL5S1</connector2>
+      </joint>
+    </joints>
+    <frames segmentCount="2" jointCount="1">
+      <frame time="0" index="0" type="identity">
+        <orientation>1 0 0 0 1 0 0 0</orientation>
+        <position>0 0 0 0 0 0</position>
+      </frame>
+      <frame time="0" index="0" type="normal">
+        <orientation>1 0 0 0 0.9998 0.02 0 0</orientation>
+        <position>0.10 0.20 0.90 0.11 0.21 1.10</position>
+        <acceleration>0.1 0.2 9.8 0.15 0.25 9.7</acceleration>
+        <jointAngle>1.5 -2.0 0.5</jointAngle>
+        <centerOfMass>0.05 0.10 0.95</centerOfMass>
+      </frame>
+      <frame time="0.004167" index="1" type="normal">
+        <orientation>1 0 0 0 0.9997 0.024 0 0</orientation>
+        <position>0.101 0.201 0.901 0.111 0.211 1.101</position>
+        <acceleration>0.11 0.21 9.81 0.16 0.26 9.71</acceleration>
+        <jointAngle>1.6 -2.1 0.6</jointAngle>
+        <centerOfMass>0.051 0.101 0.951</centerOfMass>
+      </frame>
+    </frames>
+  </subject>
+</mvnx>

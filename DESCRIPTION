@@ -1,0 +1,65 @@
+Package: PhysioDevices
+Title: Wearable and Lab-System Device Ingestion for PhysioExperiment Objects
+Version: 0.9.5
+Authors@R:
+    person(given = "Yusuke",
+           family = "Matsui",
+           role = c("aut", "cre"),
+           email = "mail.to.matsui@gmail.com")
+Description: Readers that ingest consumer-wearable and wired laboratory device
+    exports into PhysioExperiment / MultiRatePhysioExperiment objects. Wearables:
+    Empatica E4 CSV sessions and EmbracePlus Avro containers (multi-rate
+    ACC / BVP / EDA / TEMP / HR / IBI streams), Shimmer GSR3+ Consensys exports
+    (GSR, PPG, accelerometer), and Polar heart-rate / R-R interval exports. Lab
+    systems: BIOPAC AcqKnowledge '.acq' files (per-channel rates and markers),
+    Delsys Trigno EMG + IMU exports (multi-rate streams with per-sensor
+    metadata), and Xsens MVNX motion-capture XML (segment kinematics, joint
+    angles, centre of mass). Each import records a provenance entry and the
+    correct per-signal sampling rates.
+Depends:
+    R (>= 4.2),
+    PhysioCore
+Imports:
+    S4Vectors,
+    stats,
+    utils
+Suggests:
+    SummarizedExperiment,
+    testthat (>= 3.2.0),
+    reticulate,
+    xml2,
+    jsonlite,
+    read.gt3x,
+    GGIRread,
+    FITfileR,
+    knitr,
+    rmarkdown
+Additional_repositories: https://grimbough.r-universe.dev
+VignetteBuilder: knitr
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+Collate:
+    'PhysioDevices-package.R'
+    'io-empatica.R'
+    'io-shimmer.R'
+    'io-polar.R'
+    'io-biopac.R'
+    'io-delsys.R'
+    'io-xsens.R'
+    'io-applehealth.R'
+    'io-apple-ecg.R'
+    'io-fitbit.R'
+    'io-googlefit.R'
+    'io-healthconnect.R'
+    'io-actigraph.R'
+    'io-actiwatch.R'
+    'io-tcx.R'
+    'io-oura.R'
+    'io-fit.R'
+    'io-whoop.R'
+    'io-withings.R'
+    'io-samsung.R'
+RoxygenNote: 7.3.3
+URL: https://github.com/x-biosignal/PhysioDevices, https://x-biosignal.r-universe.dev/PhysioDevices, https://x-biosignal.github.io/PhysioDevices/
+BugReports: https://github.com/x-biosignal/PhysioDevices/issues
