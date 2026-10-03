@@ -1,0 +1,112 @@
+---
+title: "Analysing Fitbit and Google Pixel data"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Analysing Fitbit and Google Pixel data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+# The steps need a real Fitbit archive, so they are shown but not executed.
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", eval = FALSE)
+```
+
+```{r setup, eval = TRUE}
+library(PhysioDevices)
+```
+
+Fitbit exports your data as an account archive (Settings → *Export Your Account
+Archive*) or as the Fitbit slice of **Google Takeout** — a directory of per-day
+JSON (and some CSV) files. **Google Pixel Watch stores its health data in Fitbit**,
+so the same reader covers Pixel Watch. The analysis then reuses the same
+`PhysioWearable` / `PhysioECG` functions as the Apple Watch workflow.
+
+## 1. Ingest the archive
+
+```{r ingest}
+fb <- readFitbit("Takeout/Fitbit", tz = "Asia/Tokyo")
+fb   # which modalities were found, with row counts and spans
+```
+
+`readFitbit()` discovers files by name (`heart_rate-*`, `steps-*`, `sleep-*`,
+`resting_heart_rate-*`, SpO2), parses the nested JSON, and skips anything it
+cannot read (with a warning). Restrict with `what =` if you only need some
+modalities.
+
+## 2. Heart rate
+
+```{r hr}
+hr <- fitbitSeries(fb, "heart_rate")     # columns: time, bpm (intraday)
+summary(hr$bpm)
+fb$resting_heart_rate                    # daily resting HR
+```
+
+For HRV, Fitbit exports its own daily RMSSD (a `Heart Rate Variability` file); for
+beat-to-beat HRV use a Fitbit Sense/Charge ECG recording with `PhysioECG`.
+
+## 3. Blood oxygen (SpO2)
+
+```{r spo2}
+PhysioWearable::spo2Metrics(fb$spo2$value, time = fb$spo2$time)
+```
+
+## 4. Sleep
+
+Fitbit scores sleep stages itself (`wake`/`light`/`deep`/`rem`).
+`summarizeSleepStages()` turns them into per-night clinical metrics — the same
+engine used for Apple Watch, just with Fitbit's stage labels:
+
+```{r sleep}
+PhysioWearable::summarizeSleepStages(
+  fb$sleep,
+  asleep_levels = c("light", "deep", "rem"),
+  wake_levels   = "wake",
+  stage_cols    = c(light = "light", deep = "deep", rem = "rem"))
+
+fb$sleep_summary          # Fitbit's own per-log efficiency / minutes asleep / time in bed
+```
+
+## 5. Activity
+
+```{r activity}
+steps <- fitbitSeries(fb, "steps")
+tapply(steps$value, as.Date(steps$time), sum)     # steps per day
+```
+
+For epoch-level free-living metrics (ENMO, intensity, fragmentation, HAR → ICF)
+you need raw accelerometry, which Fitbit does not export — only derived activity.
+
+## Google Fit and Health Connect
+
+Phone-level Google data has two other paths, both reusing the same analysis:
+
+```{r googlefit}
+# Google Takeout "Fit": granular heart-rate/step JSON + daily-summary CSVs
+gf <- readGoogleFit("Takeout/Fit", tz = "Asia/Tokyo")
+gf$heart_rate
+gf$daily
+```
+
+```{r healthconnect}
+# Android Health Connect: a per-record-type CSV export
+hc <- readHealthConnect("health_connect_export", tz = "Asia/Tokyo")
+PhysioWearable::spo2Metrics(hc$spo2$value, time = hc$spo2$time)
+PhysioWearable::summarizeSleepStages(
+  hc$sleep, asleep_levels = c("light", "deep", "rem"), wake_levels = "awake",
+  stage_cols = c(deep = "deep", rem = "rem"))
+```
+
+## Scope and limitations
+
+- Covers the Fitbit **account archive / Google Takeout** JSON layout; exact
+  filenames vary slightly by export version (the reader keys off filename
+  patterns and skips what it cannot parse).
+- The Fitbit **Web API** (OAuth2, live JSON) is a separate path not covered here.
+- **Google Pixel Watch** = Fitbit data (`readFitbit()`).
+- **Google Fit** (`readGoogleFit()`, Takeout) is being retired by Google in favour
+  of **Health Connect** (`readHealthConnect()`, per-type CSV export). Health
+  Connect has no single official export file, so column names vary by exporter;
+  the reader detects them heuristically.
+- No raw acceleration and no continuous SpO2 (spot readings) — same limits as the
+  Apple Watch workflow.

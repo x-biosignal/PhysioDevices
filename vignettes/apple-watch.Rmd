@@ -1,0 +1,116 @@
+---
+title: "Analysing Apple Watch data end to end"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Analysing Apple Watch data end to end}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+# The analysis steps need a real Apple Health export, so they are shown but not
+# executed when the vignette is built.
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", eval = FALSE)
+```
+
+```{r setup, eval = TRUE}
+library(PhysioDevices)
+```
+
+This vignette takes an **Apple Health export** (Health app → profile →
+*Export All Health Data* → `export.xml`, plus any ECG `.csv` files) all the way
+through to per-modality analysis, using `PhysioDevices` for ingestion and
+`PhysioWearable` / `PhysioECG` for the analysis.
+
+## 1. Ingest the export
+
+```{r ingest}
+ah <- readAppleHealth("apple_health_export/export.xml", tz = "Asia/Tokyo")
+ah
+appleHealthTypes(ah)          # what modalities are present, with counts and spans
+```
+
+`readAppleHealth()` streams the file, so multi-hundred-MB exports are fine. Every
+`<Record>` becomes a row (type, source, unit, start/end, value); `<Workout>`
+elements become `ah$workouts`.
+
+## 2. Heart rate and heart-rate variability
+
+The watch already stores HRV as `HeartRateVariabilitySDNN`; heart rate is
+`HeartRate`. For deeper HRV from the raw beats, use the single-lead ECG (below).
+
+```{r hrv}
+hr  <- appleHealthSeries(ah, "HeartRate")                 # bpm, irregular
+hrv <- appleHealthSeries(ah, "HeartRateVariabilitySDNN")  # ms (SDNN)
+summary(hr$value_num)
+summary(hrv$value_num)
+
+# as a PhysioExperiment (irregular; timestamps in metadata) for the ecosystem
+pe_hr <- appleHealthExperiment(ah, "HeartRate")
+```
+
+## 3. Blood oxygen (SpO2)
+
+```{r spo2}
+ox <- appleHealthSeries(ah, "OxygenSaturation")           # fraction 0-1
+PhysioWearable::spo2Metrics(ox$value_num, time = ox$start)
+```
+
+`spo2Metrics()` reports mean, nadir, time-below-90% (T90/CT90) and an oxygen
+desaturation index (ODI). Note the Apple Watch takes **periodic spot readings**,
+not a continuous trace, so ODI/T90 are approximate unless you feed continuous
+overnight oximetry.
+
+## 4. Sleep
+
+The watch scores sleep **stages** itself; `summarizeAppleSleep()` turns them into
+per-night clinical metrics (TST, efficiency, WASO, latency, stage minutes).
+
+```{r sleep}
+stages <- appleHealthSeries(ah, "SleepAnalysis")          # AsleepCore/Deep/REM, Awake, InBed
+PhysioWearable::summarizeAppleSleep(stages)
+```
+
+If you instead have raw activity counts (from another wearable), score sleep/wake
+with the Cole-Kripke algorithm and summarise it:
+
+```{r sleep-actigraphy}
+sw <- PhysioWearable::coleKripke(counts)                  # counts = per-minute activity
+PhysioWearable::summarizeSleep(sw)
+```
+
+## 5. Activity
+
+```{r activity}
+steps  <- appleHealthSeries(ah, "StepCount")
+energy <- appleHealthSeries(ah, "ActiveEnergyBurned")
+tapply(steps$value_num, as.Date(steps$start), sum)        # steps per day
+ah$workouts                                               # per-workout summaries
+```
+
+For epoch-level free-living metrics (ENMO, intensity gradient, fragmentation,
+HAR → ICF), export raw accelerometry from a Core-Motion app and use
+`PhysioWearable::readAccelCSV()` → `summarizeFreeLiving()` (Apple Health itself
+stores only *derived* activity, not raw acceleration).
+
+## 6. ECG
+
+Apple Watch ECG recordings export as one CSV each; `readAppleECG()` reads the
+single-lead trace into a `PhysioExperiment` that feeds `PhysioECG`:
+
+```{r ecg}
+ecg <- readAppleECG("ecg_2023-05-01.csv")
+samplingRate(ecg)                                         # ~512 Hz
+# baseline-correct + Pan-Tompkins R-peaks, then HRV/rhythm, via PhysioECG
+proc <- PhysioECG::ecgProcess(ecg)
+PhysioECG::ecgAnalyze(proc)                               # time/freq/geometric HRV + rhythm
+```
+
+## Scope and limitations
+
+- **Raw accelerometry and ECG voltage are not in `export.xml`** — the ECG is a
+  separate CSV (`readAppleECG()`); raw motion needs a Core-Motion capture app.
+- **SpO2** is periodic spot data → ODI/T90 are approximate.
+- **Sleep stages** come from Apple's own on-device scoring; `coleKripke()` is for
+  raw-count actigraphy, not a re-scoring of Apple's stages.
+- Timestamps carry the export's timezone offset; set `tz` to your local zone.
